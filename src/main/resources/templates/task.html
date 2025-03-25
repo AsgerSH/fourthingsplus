@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<title>Fourthingsplus</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+
+<body>
+<header>
+    <a href="index.html" th:href="@{/}">
+    <img src="../public/images/fourthingsplus.png" th:src="@{/images/fourthingsplus.png}" width="40%"/>
+    </a>
+</header>
+
+<h1>Welcome, <span th:text="${session.currentUser.username}"></span></h1>
+
+
+<h2>Doing</h2>
+
+<table class="task-table">
+    <thead>
+    <tr>
+        <th>Item</th>
+        <th>Action</th>
+    </tr>
+    <tbody>
+<tr th:each="task: ${taskList}">
+<td th:text="${task.name}"></td>
+    <td><button type="submit">Edit</button></td>
+</tr>
+</tbody>
+    </thead>
+</table>
+
+<p th:if="${session.currentUser != null}">
+    <a href="index.html" th:href="@{/logout}">Logout</a>
+</p>
+
+</body>
+</html>
